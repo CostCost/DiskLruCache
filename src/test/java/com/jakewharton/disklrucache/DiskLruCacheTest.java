@@ -77,7 +77,7 @@ public final class DiskLruCacheTest {
       fail("Exepcting an IllegalArgumentException as the key was invalid.");
     } catch (IllegalArgumentException iae) {
       assertThat(iae.getMessage()).isEqualTo(
-          "keys must match regex [a-z0-9_-]{1,120}: \"" + key + "\"");
+              "keys must match regex [a-z0-9_-]{1,120}: \"" + key + "\"");
     }
     try {
       key = "has_CR\r";
@@ -85,7 +85,7 @@ public final class DiskLruCacheTest {
       fail("Exepcting an IllegalArgumentException as the key was invalid.");
     } catch (IllegalArgumentException iae) {
       assertThat(iae.getMessage()).isEqualTo(
-          "keys must match regex [a-z0-9_-]{1,120}: \"" + key + "\"");
+              "keys must match regex [a-z0-9_-]{1,120}: \"" + key + "\"");
     }
     try {
       key = "has_LF\n";
@@ -93,7 +93,7 @@ public final class DiskLruCacheTest {
       fail("Exepcting an IllegalArgumentException as the key was invalid.");
     } catch (IllegalArgumentException iae) {
       assertThat(iae.getMessage()).isEqualTo(
-          "keys must match regex [a-z0-9_-]{1,120}: \"" + key + "\"");
+              "keys must match regex [a-z0-9_-]{1,120}: \"" + key + "\"");
     }
     try {
       key = "has_invalid/";
@@ -101,7 +101,7 @@ public final class DiskLruCacheTest {
       fail("Exepcting an IllegalArgumentException as the key was invalid.");
     } catch (IllegalArgumentException iae) {
       assertThat(iae.getMessage()).isEqualTo(
-          "keys must match regex [a-z0-9_-]{1,120}: \"" + key + "\"");
+              "keys must match regex [a-z0-9_-]{1,120}: \"" + key + "\"");
     }
     try {
       key = "has_invalid\u2603";
@@ -109,7 +109,7 @@ public final class DiskLruCacheTest {
       fail("Exepcting an IllegalArgumentException as the key was invalid.");
     } catch (IllegalArgumentException iae) {
       assertThat(iae.getMessage()).isEqualTo(
-          "keys must match regex [a-z0-9_-]{1,120}: \"" + key + "\"");
+              "keys must match regex [a-z0-9_-]{1,120}: \"" + key + "\"");
     }
     try {
       key = "this_is_way_too_long_this_is_way_too_long_this_is_way_too_long_"
@@ -118,14 +118,14 @@ public final class DiskLruCacheTest {
       fail("Exepcting an IllegalArgumentException as the key was too long.");
     } catch (IllegalArgumentException iae) {
       assertThat(iae.getMessage()).isEqualTo(
-          "keys must match regex [a-z0-9_-]{1,120}: \"" + key + "\"");
+              "keys must match regex [a-z0-9_-]{1,120}: \"" + key + "\"");
     }
 
     // Test valid cases.
 
     // Exactly 120.
     key = "0123456789012345678901234567890123456789012345678901234567890123456789"
-          + "01234567890123456789012345678901234567890123456789";
+            + "01234567890123456789012345678901234567890123456789";
     cache.edit(key).abort();
     // Contains all valid characters.
     key = "abcdefghijklmnopqrstuvwxyz_0123456789";
@@ -650,8 +650,8 @@ public final class DiskLruCacheTest {
       assertValue("b", "b", "b");
       if (journalLength < lastJournalLength) {
         System.out
-            .printf("Journal compacted from %s bytes to %s bytes\n", lastJournalLength,
-                journalLength);
+                .printf("Journal compacted from %s bytes to %s bytes\n", lastJournalLength,
+                        journalLength);
         break; // Test passed!
       }
       lastJournalLength = journalLength;
@@ -666,8 +666,8 @@ public final class DiskLruCacheTest {
       set("b", "b", "b");
       if (journalLength < lastJournalLength) {
         System.out
-            .printf("Journal compacted from %s bytes to %s bytes\n", lastJournalLength,
-                journalLength);
+                .printf("Journal compacted from %s bytes to %s bytes\n", lastJournalLength,
+                        journalLength);
         break;
       }
       lastJournalLength = journalLength;
@@ -691,8 +691,8 @@ public final class DiskLruCacheTest {
       cache = DiskLruCache.open(cacheDir, appVersion, 2, Integer.MAX_VALUE);
       if (journalLength < lastJournalLength) {
         System.out
-            .printf("Journal compacted from %s bytes to %s bytes\n", lastJournalLength,
-                journalLength);
+                .printf("Journal compacted from %s bytes to %s bytes\n", lastJournalLength,
+                        journalLength);
         break; // Test passed!
       }
       lastJournalLength = journalLength;
@@ -710,8 +710,8 @@ public final class DiskLruCacheTest {
       cache = DiskLruCache.open(cacheDir, appVersion, 2, Integer.MAX_VALUE);
       if (journalLength < lastJournalLength) {
         System.out
-            .printf("Journal compacted from %s bytes to %s bytes\n", lastJournalLength,
-                journalLength);
+                .printf("Journal compacted from %s bytes to %s bytes\n", lastJournalLength,
+                        journalLength);
         break;
       }
       lastJournalLength = journalLength;
@@ -901,7 +901,7 @@ public final class DiskLruCacheTest {
   }
 
   private void createJournalWithHeader(String magic, String version, String appVersion,
-      String valueCount, String blank, String... bodyLines) throws Exception {
+                                       String valueCount, String blank, String... bodyLines) throws Exception {
     Writer writer = new FileWriter(journalFile);
     writer.write(magic + "\n");
     writer.write(version + "\n");
